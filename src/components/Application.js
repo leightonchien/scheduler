@@ -4,6 +4,8 @@ import "components/Application.scss";
 
 import DayList from "./DayList";
 
+import InterviewerList from "./InterviewerList";
+
 const days = [
   {
     id: 1,
