@@ -1,10 +1,52 @@
 import React, { useState } from "react";
-
 import "components/Application.scss";
-
 import DayList from "./DayList";
-
 import InterviewerList from "./InterviewerList";
+
+import Appointment from "components/Appointment";
+
+const appointments = [
+  {
+    id: 1,
+    time: "12pm"
+  },
+  {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png"
+      }
+    }
+  },
+  {
+    id: 3,
+    time: "2pm",
+    interview: {
+      student: "Richard Dank",
+      interviewer: {
+        id: 3,
+        name: "Whada Funk",
+        avatar: "https://i.redd.it/x8hhr1z8han41.jpg"
+      }
+    }
+  },
+  {
+    id: 4,
+    time: "8pm",
+    interview: {
+      student: "Danklord Supreme",
+      interviewer: {
+        id: 3,
+        name: "Da Undankest",
+        avatar: "https://i.redd.it/t8wx28oto8n41.jpg"
+      }
+    }
+  }
+];
 
 const days = [
   {
@@ -24,6 +66,16 @@ const days = [
   },
 ];
 
+
+const appointment = appointments.map((appt) => {
+  console.log(appt, "appt")
+  return (
+      <Appointment key={appt.id} id={appt.id} time={appt.time} interview={appt.interview} />
+    )
+});
+console.log(appointment)
+
+
 export default function Application(props) {
 
   const [day, setDay] = useState("Monday");
@@ -33,28 +85,39 @@ export default function Application(props) {
       <section className="sidebar">
 
       <img
-  className="sidebar--centered"
-  src="images/logo.png"
-  alt="Interview Scheduler"
-/>
-<hr className="sidebar__separator sidebar--centered" />
-<nav className="sidebar__menu"></nav>
-<nav className="sidebar__menu">
+        className="sidebar--centered"
+        src="images/logo.png"
+        alt="Interview Scheduler"
+      />
+      <hr className="sidebar__separator sidebar--centered" />
+      <nav className="sidebar__menu"></nav>
+      <nav className="sidebar__menu">
         <DayList
           days={days}
           day={day}
           setDay={setDay}
         />
         </nav>
-<img
-  className="sidebar__lhl sidebar--centered"
-  src="images/lhl.png"
-  alt="Lighthouse Labs"
-/>
+      <img
+        className="sidebar__lhl sidebar--centered"
+        src="images/lhl.png"
+        alt="Lighthouse Labs"
+      />
       </section>
       <section className="schedule">
 
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+      {appointment} 
+        {/* {appointments.map(appointment => {
+          return (
+          <Appointment 
+            key={appointment.id}
+            id={appointment.id}
+            time={appointment.time}
+            interview={appointment.interview}
+          /> ) */}
+
+
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
