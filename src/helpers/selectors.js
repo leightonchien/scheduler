@@ -1,5 +1,5 @@
 //Go through an appointments object and return an array of all the nested objects with that id
-const matchAppointments = (appointments, ids) => {
+const matchIds = (appointments, ids) => {
     const matched = ids.map(id => appointments[id]);
     return matched;
   }
@@ -16,7 +16,19 @@ const matchAppointments = (appointments, ids) => {
         dayObject.appointments.forEach(apptId => appointmentArr.push(apptId))
       }
     })
-    return matchAppointments(state.appointments, appointmentArr);
+    return matchIds(state.appointments, appointmentArr);
+}
+
+function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
+
+  const interviewerInfo = state.interviewers[interview.interviewer];
+  return {
+    student: interview.student,
+    interviewer: interviewerInfo
+    }
   }
   
-  module.exports = { matchAppointments, getAppointmentsForDay };
+  module.exports = { matchIds, getAppointmentsForDay, getInterview };

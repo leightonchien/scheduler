@@ -10,10 +10,11 @@ setInterviewer:function - a function that accepts an interviewer id
 export default function InterviewerList(props) {
 
     const interviewers = props.interviewers.map(interviewerObj => {
+
         return (
           <InterviewerListItem 
             key={interviewerObj.id}
-            name={interviewerObj.name}
+            name={interviewerObj.interviewer}
             avatar={interviewerObj.avatar}
             selected={interviewerObj.id === props.value}
             setInterviewer={(event) => props.onChange(interviewerObj.id)}
