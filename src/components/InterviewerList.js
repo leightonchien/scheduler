@@ -1,7 +1,7 @@
 import React from 'react';
 import 'components/InterviewerList.scss';
 import InterviewerListItem from 'components/InterviewerListItem';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 /*InterviewerList takes in three props:
 interviewers:array - an array of objects containing the information of each interviewer
