@@ -12,7 +12,7 @@ export default function Form(props) {
   //Helper function to clear all fields
   const reset = () => {
     setName("")
-    setInterviewer('null')
+    setInterviewer(null)
   }
 
   function cancel () {
@@ -26,6 +26,7 @@ export default function Form(props) {
       setError("Student name cannot be blank")
       return;
     }
+    setError("")
     props.onSave(currentName, currentInterviewer);
   }
 
@@ -40,8 +41,8 @@ export default function Form(props) {
             onChange={(event) => setName(event.target.value)}
             value={currentName}
 
-            //placeholder="Enter Student Name"
-            placeholder={currentName ? currentName : "Enter Student Name"}
+            placeholder="Enter Student Name"
+            // placeholder={currentName ? currentName : "Enter Student Name"}
             data-testid="student-name-input"
 
             /*
@@ -57,7 +58,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onSubmit={event => event.preventDefault()} onClick={event => validate()}>Save</Button>
+          <Button confirm onSubmit={event => event.preventDefault()} onClick={validate}>Save</Button>
         </section>
       </section>
     </main>
