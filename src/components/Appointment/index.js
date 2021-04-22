@@ -56,8 +56,8 @@ export default function Appointment(props) {
       props.bookInterview(props.id, interview)
         .then(() => transition(SHOW))
         .catch(() => transition(ERROR_SAVE, true))
+   }
   }
-  console.log(props.interviewers, "interviewers in index.js")
 
   function remove() {
 
@@ -81,7 +81,7 @@ export default function Appointment(props) {
 
   return (
 
-    <article className="appointment">
+    <article className="appointment"  data-testid="appointment">
 
       <Header time={props.time} />
       
@@ -113,28 +113,29 @@ export default function Appointment(props) {
         />}
 
       {mode === EDIT &&
-              <Form 
-                name={props.name ? props.name : props.interview.student}
-                value={props.value ? props.value: props.interview.interviewer.id}
-                interviewers={props.interviewers}
-                onSave={save}
-                onCancel={back}
-              />
-            }
+        <Form 
+          name={props.name ? props.name : props.interview.student}
+          value={props.value ? props.value: props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={back}
+        />
+      }
 
 
       {mode === ERROR_SAVE && 
-              <Error 
-                message="Could not create appointment"
-                onClose={back}
-              />
-            }
-            {mode === ERROR_DELETE && 
-              <Error 
-                message="Could not cancel appointment"
-                onClose={back}
-              />
-            }
+        <Error 
+          message="Could not create appointment"
+          onClose={back}
+        />
+      }
+      
+      {mode === ERROR_DELETE && 
+        <Error 
+          message="Could not cancel appointment"
+          onClose={back}
+        />
+      }
 
     </article>
 
@@ -142,4 +143,4 @@ export default function Appointment(props) {
 }
 
 // All Appointment components will render a Header that takes in a time prop.
-// If props.interview is truthy (an interview object) the Appointment will render the <Show /> component, else it should render the <Empty /> component.
+// If props.interview is truthy (an interview object) the Appointment will render the <Show /> component, else it should render the <Empty /> component
