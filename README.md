@@ -56,5 +56,7 @@ For full functionality both must run concurrently: the client and the API server
 
 ## Project Stack
 __Front-End:__ React, Axios, JSX, HTML, SASS, JavaScript
+
 __Back-End:__ Express, Node.js, PostgreSQL
+
 __Testing:__ Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
