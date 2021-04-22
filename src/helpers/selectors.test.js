@@ -52,7 +52,7 @@ const state = {
         id: 4,
         name: "Tori",
         avatar: "https://i.imgur.com/Nmx0Qxo.png"
-
+    }    
   }
 };
 
