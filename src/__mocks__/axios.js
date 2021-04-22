@@ -53,12 +53,7 @@ const fixtures = {
     }
   };
   
-  const apiResponse = {
-    "http://localhost:8001/api/days" : fixtures.days,
-    "http://localhost:8001/api/appointments" : fixtures.appointments,
-    "http://localhost:8001/api/interviewers" : fixtures.interviewers
-  }
-  
+
   const interview ={ 
     student: "Lydia Miller-Jones",
     interviewer: "Sylvia Palmer"
@@ -70,19 +65,47 @@ const fixtures = {
     defaults: { baseURL: ""},
 
     get: jest.fn(url => {
-      return Promise.resolve({
-        status: 200,
-        statusText: "OK",
-        data: apiResponse[url]
-      })
-
-    }),
+        if (url === "/api/days") {
+            return Promise.resolve({
+              status: 200,
+              statusText: "OK",
+              data: fixtures.days
+            });
+          }
+      
+          if (url === "/api/appointments") {
+            /* Resolve appointments data */
+            return Promise.resolve({
+              status: 200,
+              statusText: "OK",
+              data: fixtures.appointments
+            });
+          }
+      
+          if (url === "/api/interviewers") {
+            /* Resolve interviewers data */
+            return Promise.resolve({
+              status: 200,
+              statusText: "OK",
+              data: fixtures.interviewers
+            });
+          }
+        }),
 
     put: jest.fn(() => {
       return Promise.resolve({
         status: 200,
         statusText: "OK",
         data: interview
+      })
+    }),
+
+    delete: jest.fn((id) => {
+        return Promise.resolve({
+          status: 200,
+          statusText: "OK",
+          data: null
+
       })
     })
   } 
